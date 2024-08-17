@@ -8,7 +8,7 @@
 
 object Pe12 {
   import MathUtils.Primes._
-  import LazyNumberSeqs._
+  import NumberSeqs.Lazy._
   def solve = problem12(500)
   def problem12(target: Int) =
     triangles.find(numberOfDivisors(_) > target).getOrElse(0)
