@@ -1,4 +1,5 @@
 object MathUtils {
+  import Math._
   object Primes {
     def primeFactors(x: Int): List[Int] = {
       def ff(x: Int, n: Int): List[Int] = if (n * n > x) x :: Nil else
@@ -13,5 +14,12 @@ object MathUtils {
         .view.mapValues(_.length + 1)
         .values
         .reduce(_ * _)
+  }
+
+  object ArithmeticSeries {
+    def arithmeticSum(n: Int): Int =
+      (n * (n + 1)) / 2
+    def arithmeticSeqSum(n: Int)(d: Int) =
+      d * arithmeticSum(floorDiv(n, d))
   }
 }
