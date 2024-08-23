@@ -22,4 +22,5 @@ object MathUtils {
     def arithmeticSeqSum(n: Int)(d: Int) =
       d * arithmeticSum(floorDiv(n, d))
   }
+  def sqr(x : Int) = x * x
 }
