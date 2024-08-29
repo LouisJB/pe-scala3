@@ -1,6 +1,11 @@
 object MathUtils {
   import Math._
   object Primes {
+    lazy val primes: LazyList[Int] = 2 #:: LazyList.from(3).filter { p =>
+      primes.takeWhile(x => x * x <= p)
+             .forall(p % _ > 0)
+    }
+
     def primeFactors(x: Int): List[Int] = {
       def ff(x: Int, n: Int): List[Int] = if (n * n > x) x :: Nil else
         x % n match {
