@@ -1,7 +1,7 @@
 @main def mainPe12(): Unit = {
   import TimeUtils._
   import Pe12._
-  println("Pe12: " + solve)
+  println("Pe12: " + timeMs(solve))
   val timedResult = timeAvgMs(100)(solve)
   println(s"timed: $timedResult")
 }

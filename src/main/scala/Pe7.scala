@@ -1,6 +1,7 @@
 @main def mainPe7(): Unit = {
   import Pe7._
-  println("Pe7: " + solve)
+  import TimeUtils._
+  println("Pe7: " + timeMs(solve))
 }
 
 object Pe7 {
