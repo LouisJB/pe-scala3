@@ -7,9 +7,8 @@
 object Pe2 {
   import NumberSeqs.Lazy._
   val n = 4 * 1000 * 1000
-  def solve = {
-    fibonacci.view
+  def solve =
+    fibonacci
       .takeWhile(_ <= n)
       .filter(_ % 2 == 0).sum
-  }
 }

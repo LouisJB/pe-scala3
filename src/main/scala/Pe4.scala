@@ -6,7 +6,7 @@
 
 object Pe4 {
   def solve =
-    (100 to 999).view
+    (100 to 999)
       .flatMap(i => (i to 999).map(_ * i))
       .filter(n => n.toString == n.toString.reverse)
       .max

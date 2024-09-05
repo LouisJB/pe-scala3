@@ -15,14 +15,13 @@ object Pe11 {
       Array((1, 0), (0, 1), (1, 1), (-1, 1))
     def prod(x: Int, y: Int, dx: Int, dy: Int) =
       (0 until len).map(i => xs(y + dy * i)(x + dx * i)).product
-    val products = for {
+    for
       x <- 0 until size
       y <- 0 until size
       offset <- offsets
       if valid(x + offset._1 * (len - 1), y + offset._2 * (len - 1))
-    } yield prod(x, y, offset._1, offset._2)
-    products.max
-  }
+    yield prod(x, y, offset._1, offset._2)
+  }.max
 
   lazy val rawData =
     """

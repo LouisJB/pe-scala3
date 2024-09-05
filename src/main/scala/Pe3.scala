@@ -10,7 +10,6 @@ object Pe3 {
     .find(n % _ == 0)
     .fold(List(n))(i => i.toLong :: allFactors(n / i))
 
-  def solve = {
+  def solve =
     allFactors(600851475143L).last
-  }
 }
