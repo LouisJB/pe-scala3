@@ -6,31 +6,34 @@ import scala.annotation.tailrec
 }
 
 object Pe14 {
-  
+
   def solve = problem14(1 * 1000 * 1000)
 
   def problem14(target: Int): Int = {
+    @tailrec
+    def colatzlen(n: Long, len: Int = 0): Int = n match {
+      case 1 => len + 1
+      case _ =>
+        val x = if (n % 2 == 0) n / 2 else 3 * n + 1
+        colatzlen(x, len + 1)
+    }
+
+    // news flash, doesn't even need memoizing
+/*
     import scala.collection.mutable 
     def memoize[A, B](f: A => B): A => B = new mutable.HashMap[A, B]() { self =>
       override def apply(key: A) = self.synchronized(getOrElseUpdate(key, f(key)))
     }
-
-    @tailrec
-    def colatz(x: Long, d: Int = 1): Int =  { x match {
-      case 1 => d
-      case a =>
-        val n = if (a % 2 == 0) a/2 else a*3+1 
-        colatz(n, d+1)
-      }
+    lazy val colatzlenm: Long => Int = memoize { 
+      case x => colatzlen(x)
     }
+*/
 
-    lazy val colaztm: Long => Int = memoize { 
-      case x => colatz(x)
-    }
-
-    (2 until target).foldLeft((1, 1)) { case ((mx, ml), x) => 
-      val l = colaztm(x)
-      if (l > ml) (x, l) else (mx, ml)
-    }._1
+    (2 until target)
+      .map(n => (n, colatzlen(n)))
+      .reduceLeft {
+        case (next @ (_, len), max @ (_, maxlen)) =>
+          if (len > maxlen) next else max
+      }._1
   }
 }
